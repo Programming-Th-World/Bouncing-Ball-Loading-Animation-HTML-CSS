@@ -1,0 +1,87 @@
+/* Global Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/* Body */
+body {
+  background-color: hsl(35, 100%, 50%);
+  color: #fff;
+
+  min-height: 100vh;
+
+  font-size: 1.125rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
+  display: grid;
+  place-items: center;
+}
+
+/* Spinner */
+.spinner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+  /* Spinner Variables */
+  --ball-size: 15px;
+  --ball-radius: 100vmax;
+  --bounce-height: 40px;
+  --squash-height: 5px;
+}
+
+/* Spinner: Text */
+.text {
+  text-transform: uppercase;
+  margin-left: 10px;
+}
+
+/* Spinner: Ball */
+.ball {
+  width: var(--ball-size);
+  height: var(--bounce-height);
+
+  position: relative;
+}
+
+.ball::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: var(--ball-size);
+  height: var(--ball-size);
+
+  background-color: #fff;
+  border-radius: var(--ball-radius);
+
+  animation: bounce 500ms infinite alternate ease;
+}
+
+@keyframes bounce {
+  0% {
+    height: var(--squash-height);
+    top: calc(var(--bounce-height) - var(--squash-height));
+    border-radius: var(--ball-radius) var(--ball-radius) 0 0;
+    transform: scaleX(1.5);
+  }
+
+  25% {
+    height: var(--ball-size);
+    border-radius: var(--ball-radius);
+    transform: scaleX(1);
+  }
+
+  100% {
+    top: 0;
+  }
+}
